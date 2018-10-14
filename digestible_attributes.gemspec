@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Anthony Hernandez"]
   s.email       = ["ant@antfeedr.com"]
   s.homepage    = "https://www.github.com/hernanat/digestible_attributes"
-  s.summary     = ""
+  s.summary     = "Rails plugin for generating and storing hash digests based on model attributes"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
