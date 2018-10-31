@@ -50,6 +50,11 @@ Or install it yourself as:
 $ gem install digestible_attributes
 ```
 
+## Things to come
+- Generators
+- RSpec Matchers
+- Any ideas you might have?
+
 ## Contributing
 For any suggested changes, you can fork the repo, make your changes, and then open up a PR.
 Please be sure to include a helpful commit message / explanation for your changes.
