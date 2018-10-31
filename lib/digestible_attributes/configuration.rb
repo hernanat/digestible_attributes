@@ -1,3 +1,4 @@
+require 'digestible_attributes/callback_actions'
 require 'digestible_attributes/errors'
 
 module DigestibleAttributes
@@ -15,18 +16,18 @@ module DigestibleAttributes
       @@digest_algorithm = options.fetch(:algorithm, :MD5)
       @@digest_column = options.fetch(:digest_column, default_digest_column)
 
-      if configuration_valid?
-        include CallbackActions
-      end
+      validate_configuration!
+
+      include CallbackActions
     end
 
     def default_digest_column
       "#{@@digest_algorithm.downcase}_digest".to_sym
     end
 
-    def configuration_valid?
-      validate_digest_fields! &&
-      validate_digest_algorithm! &&
+    def validate_configuration!
+      validate_digest_fields!
+      validate_digest_algorithm!
       validate_digest_column!
     end
 
@@ -35,23 +36,17 @@ module DigestibleAttributes
         diff = @@digest_fields - symbolized_columns
 
         raise Errors::DigestFieldError.new(diff)
-      else
-        true
       end
     end
 
     def validate_digest_algorithm!
-      if DIGEST_ALGORITHMS.include?(@@digest_algorithm)
-        true
-      else
+      unless DIGEST_ALGORITHMS.include?(@@digest_algorithm)
         raise Errors::DigestAlgorithmError.new(@@digest_algorithm)
       end
     end
 
     def validate_digest_column!
-      if symbolized_columns.include?(@@digest_column)
-        true
-      else
+      unless symbolized_columns.include?(@@digest_column)
         raise Errors::DigestColumnError.new(@@digest_column)
       end
     end

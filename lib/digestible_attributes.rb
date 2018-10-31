@@ -1,6 +1,4 @@
-require 'active_record'
 require 'active_support'
-require 'digestible_attributes/callback_actions'
 require 'digestible_attributes/configuration'
 require 'digestible_attributes/railtie'
 
